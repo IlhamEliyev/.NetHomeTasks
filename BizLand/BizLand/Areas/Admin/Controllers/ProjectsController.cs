@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BizLand.DAL;
 using BizLand.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace BizLand.Areas.Admin.Controllers
 {
@@ -14,10 +16,12 @@ namespace BizLand.Areas.Admin.Controllers
     public class ProjectsController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public ProjectsController(AppDbContext context)
+        public ProjectsController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Admin/Projects
@@ -49,7 +53,7 @@ namespace BizLand.Areas.Admin.Controllers
         // GET: Admin/Projects/Create
         public IActionResult Create()
         {
-            ViewData["ProjectCategoryId"] = new SelectList(_context.ProjectCategories, "Id", "Id");
+            ViewData["ProjectCategoryId"] = new SelectList(_context.ProjectCategories, "Id", "Name");
             return View();
         }
 
@@ -58,15 +62,37 @@ namespace BizLand.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Image,ProjectCategoryId,Id")] Project project)
+        public async Task<IActionResult> Create(Project project)
         {
+            if (!project.Img.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("Img", "File is not image");
+                return View();
+            }
+            if (project.Img.Length / 1024 > 400)
+            {
+                ModelState.AddModelError("Img", "File is too big");
+                return View();
+            }
+
+            string path = _env.WebRootPath + @"img\portfolio";
+            string fileName = Guid.NewGuid().ToString() + project.Img.FileName;
+            string final = Path.Combine(path, fileName);
+
+            using (FileStream stream = new FileStream(final, FileMode.Create))
+            {
+                await project.Img.CopyToAsync(stream);
+            }
+
+            project.Image = fileName;
+
             if (ModelState.IsValid)
             {
                 _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProjectCategoryId"] = new SelectList(_context.ProjectCategories, "Id", "Id", project.ProjectCategoryId);
+            ViewData["ProjectCategoryId"] = new SelectList(_context.ProjectCategories, "Id", "Name", project.ProjectCategoryId);
             return View(project);
         }
 
@@ -83,7 +109,7 @@ namespace BizLand.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProjectCategoryId"] = new SelectList(_context.ProjectCategories, "Id", "Id", project.ProjectCategoryId);
+            ViewData["ProjectCategoryId"] = new SelectList(_context.ProjectCategories, "Id", "Name", project.ProjectCategoryId);
             return View(project);
         }
 
@@ -119,7 +145,7 @@ namespace BizLand.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProjectCategoryId"] = new SelectList(_context.ProjectCategories, "Id", "Id", project.ProjectCategoryId);
+            ViewData["ProjectCategoryId"] = new SelectList(_context.ProjectCategories, "Id", "Name", project.ProjectCategoryId);
             return View(project);
         }
 
@@ -148,6 +174,17 @@ namespace BizLand.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var project = await _context.Projects.FindAsync(id);
+
+            string path = _env.WebRootPath + @"img\portfolio";
+            string fileName = project.Image;
+            string final = Path.Combine(path, fileName);
+
+            if (System.IO.File.Exists(final))
+            {
+                System.IO.File.Delete(final);
+
+            }
+
             _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

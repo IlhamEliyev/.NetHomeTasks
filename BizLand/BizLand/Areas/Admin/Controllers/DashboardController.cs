@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BizLand.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class DashboardController : Controller
     {
-
-        [Area("Admin")]
         public IActionResult Index()
         {
             return View();

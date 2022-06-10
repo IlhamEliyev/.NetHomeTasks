@@ -42,25 +42,23 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                <a class="nav-link" asp-area="admin" asp-controller="Dashboard" asp-action="Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-area="admin" asp-controller="Projects" asp-action="Index">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Projects</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="admin" asp-controller="DashBoard" asp-action="Index">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>ProjectCategoires</span>
+                <a class="nav-link" asp-area="admin" asp-controller="ProjectCategories" asp-action="Index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Project Categories</span>
                 </a>
             </li>
-
-
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -344,7 +342,7 @@
     <!-- Page level custom scripts -->
     <script src="~/admin/js/demo/chart-area-demo.js"></script>
     <script src="~/admin/js/demo/chart-pie-demo.js"></script>
-    @RenderSection("Scripts", false)
+    @RenderSection("Scripts",false)
 </body>
 
 </html>

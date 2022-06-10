@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CommentForm
+namespace BizLand
 {
     public class Startup
     {
@@ -34,6 +34,7 @@ namespace CommentForm
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseDefaultFiles();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

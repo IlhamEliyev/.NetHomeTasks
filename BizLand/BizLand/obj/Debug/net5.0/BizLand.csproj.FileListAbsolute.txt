@@ -144,9 +144,13 @@ C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\bin\Debug\net5.0\runtimes\win-ar
 C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\DashBoard\Index.cshtml.g.cs
 C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProjectCategories\Create.cshtml.g.cs
+C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProjectCategories\Delete.cshtml.g.cs
+C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProjectCategories\Details.cshtml.g.cs
+C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProjectCategories\Edit.cshtml.g.cs
+C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\ProjectCategories\Index.cshtml.g.cs
 C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\Projects\Create.cshtml.g.cs
 C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\Projects\Delete.cshtml.g.cs
 C:\Users\Ilham\Desktop\.NetCore\BizLand\BizLand\obj\Debug\net5.0\Razor\Areas\Admin\Views\Projects\Details.cshtml.g.cs
